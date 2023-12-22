@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Guessing Game</title>
+</head>
+<body>
+    <h1>Word Guessing Game</h1>
+    <p>Guess the word! You have {{ guesses }} guesses left.</p>
+    <p>Word: {% for letter in word %} {% if letter in letters %} {{ letter }} {% else %} _ {% endif %} {% endfor %}</p>
+    
+    <form method="post" action="{% url 'game' %}">
+        {% csrf_token %}
+        <label for="guess">Enter a letter:</label>
+        <input type="text" name="guess" maxlength="1" required>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
